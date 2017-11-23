@@ -1,0 +1,13 @@
+﻿CREATE TABLE [dbo].[TeamStats]
+(
+	[TeamId] INT NOT NULL PRIMARY KEY,
+	[Year] SMALLINT NOT NULL,
+	[TeamName] NVARCHAR(128) NOT NULL,
+	[PointsFor] SMALLINT NOT NULL,
+	[PointsAgainst] SMALLINT NOT NULL,
+	[Wins] TINYINT NOT NULL,
+	[Losses] TINYINT NOT NULL,
+	[GamesPlayed] TINYINT NOT NULL,
+	[Created] DATETIME NOT NULL DEFAULT getutcdate(),
+	[LastUpdated] DATETIME NOT NULL DEFAULT getutcdate()
+)

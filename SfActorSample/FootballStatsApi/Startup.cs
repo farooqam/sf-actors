@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using FootballStatsApi.Dal.Common.Repositories;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -40,6 +42,8 @@ namespace FootballStatsApi
                     }
                 });
             });
+
+            services.TryAddScoped<ITeamStatsRepository, >();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
