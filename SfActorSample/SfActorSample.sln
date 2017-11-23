@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6BD5E912-27C1-42A3-ABFC-6D742923C2F0}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "SfApplication", "SfApplication\SfApplication.sfproj", "{82B200C3-4913-424B-9AA7-13F64C7D4904}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballStatsApi", "FootballStatsApi\FootballStatsApi.csproj", "{3074A97F-0AE1-4EC4-833B-91DABEE34014}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82B200C3-4913-424B-9AA7-13F64C7D4904}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{82B200C3-4913-424B-9AA7-13F64C7D4904}.Debug|x64.ActiveCfg = Debug|x64
+		{82B200C3-4913-424B-9AA7-13F64C7D4904}.Debug|x64.Build.0 = Debug|x64
+		{82B200C3-4913-424B-9AA7-13F64C7D4904}.Debug|x64.Deploy.0 = Debug|x64
+		{82B200C3-4913-424B-9AA7-13F64C7D4904}.Release|Any CPU.ActiveCfg = Release|x64
+		{82B200C3-4913-424B-9AA7-13F64C7D4904}.Release|x64.ActiveCfg = Release|x64
+		{82B200C3-4913-424B-9AA7-13F64C7D4904}.Release|x64.Build.0 = Release|x64
+		{82B200C3-4913-424B-9AA7-13F64C7D4904}.Release|x64.Deploy.0 = Release|x64
+		{3074A97F-0AE1-4EC4-833B-91DABEE34014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3074A97F-0AE1-4EC4-833B-91DABEE34014}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3074A97F-0AE1-4EC4-833B-91DABEE34014}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3074A97F-0AE1-4EC4-833B-91DABEE34014}.Debug|x64.Build.0 = Debug|Any CPU
+		{3074A97F-0AE1-4EC4-833B-91DABEE34014}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3074A97F-0AE1-4EC4-833B-91DABEE34014}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3074A97F-0AE1-4EC4-833B-91DABEE34014}.Release|x64.ActiveCfg = Release|Any CPU
+		{3074A97F-0AE1-4EC4-833B-91DABEE34014}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {277BB70F-CAF9-47BB-A504-A7BEB41015AE}
+	EndGlobalSection
+EndGlobal
