@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace FootballStatsApi
 {
@@ -25,6 +26,20 @@ namespace FootballStatsApi
         {
             // Add framework services.
             services.AddMvc();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Info
+                {
+                    Title = "Football Stats API",
+                    Version = "v1",
+                    Contact = new Contact
+                    {
+                        Email = "apisupport@techniqly.com",
+                        Name = "API Support",
+                        Url = "https://github.com/farooqam/sf-actors"
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +53,8 @@ namespace FootballStatsApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "Football Stats API V1"));
             app.UseMvc();
         }
     }
