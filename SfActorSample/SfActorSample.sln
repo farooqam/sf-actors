@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6BD5E912-27C1-42A3-ABFC-6D742923C2F0}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "SfApplication", "SfApplication\SfApplication.sfproj", "{82B200C3-4913-424B-9AA7-13F64C7D4904}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballStatsApi", "FootballStatsApi\FootballStatsApi.csproj", "{3074A97F-0AE1-4EC4-833B-91DABEE34014}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballStatsApi", "FootballStatsApi\FootballStatsApi.csproj", "{3074A97F-0AE1-4EC4-833B-91DABEE34014}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballStatsApi.Common", "FootballStatsApi.Common\FootballStatsApi.Common.csproj", "{A9C5B424-964D-4A0D-852F-18B1EF0929B9}"
 EndProject
@@ -30,6 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{82B200C3-4913-424B-9AA7-13F64C7D4904}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{82B200C3-4913-424B-9AA7-13F64C7D4904}.Debug|Any CPU.Build.0 = Debug|x64
+		{82B200C3-4913-424B-9AA7-13F64C7D4904}.Debug|Any CPU.Deploy.0 = Debug|x64
 		{82B200C3-4913-424B-9AA7-13F64C7D4904}.Debug|x64.ActiveCfg = Debug|x64
 		{82B200C3-4913-424B-9AA7-13F64C7D4904}.Debug|x64.Build.0 = Debug|x64
 		{82B200C3-4913-424B-9AA7-13F64C7D4904}.Debug|x64.Deploy.0 = Debug|x64

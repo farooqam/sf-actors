@@ -35,7 +35,7 @@ namespace FootballStatsApi.Dal.SqlServer.Repositories
 
                 var result = await connection.QueryAsync<TeamStatsDto>(
                     query,
-                    new {id},
+                    new {TeamId = id},
                     commandTimeout: (int) _settings.QueryTimeout.TotalSeconds);
 
                 return result;
@@ -57,10 +57,11 @@ namespace FootballStatsApi.Dal.SqlServer.Repositories
                                     [PointsAgainst] = source.[PointsAgainst],
                                     [Wins] = source.[Wins],
                                     [Losses] = source.[Losses],
-                                    [GamesPlayed] = source.[GamesPlayed]
+                                    [GamesPlayed] = source.[GamesPlayed],
+                                    [LastUpdated] = getutcdate()
                             WHEN NOT MATCHED THEN
-                                INSERT ([TeamId], [Year], [TeamName], [PointsFor], [PointsAgainst], [Wins], [Losses], [GamesPlayed])
-                                VALUES (source.[TeamId], source.[Year], source.[TeamName], source.[PointsFor], source.[PointsAgainst], source.[Wins], source.[Losses], source.[GamesPlayed])";
+                                INSERT ([TeamId], [Year], [TeamName], [PointsFor], [PointsAgainst], [Wins], [Losses], [GamesPlayed], [Created])
+                                VALUES (source.[TeamId], source.[Year], source.[TeamName], source.[PointsFor], source.[PointsAgainst], source.[Wins], source.[Losses], source.[GamesPlayed], getutcdate());";
 
             using (var connection = new SqlConnection(_settings.ConnectionString))
             {

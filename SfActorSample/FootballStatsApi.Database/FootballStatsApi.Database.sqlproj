@@ -62,4 +62,7 @@
   <ItemGroup>
     <Build Include="Tables\TeamStats.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="FootballStatsApi.Database.publish.xml" />
+  </ItemGroup>
 </Project>

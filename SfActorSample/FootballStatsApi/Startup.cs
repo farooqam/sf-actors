@@ -1,4 +1,9 @@
-﻿using FootballStatsApi.Dal.Common.Repositories;
+﻿using System;
+using AutoMapper;
+using FootballStatsApi.Common.Contracts;
+using FootballStatsApi.Dal.Common.Dto;
+using FootballStatsApi.Dal.Common.Repositories;
+using FootballStatsApi.Dal.SqlServer.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +33,7 @@ namespace FootballStatsApi
         {
             // Add framework services.
             services.AddMvc();
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Info
@@ -43,7 +49,26 @@ namespace FootballStatsApi
                 });
             });
 
-            services.TryAddScoped<ITeamStatsRepository, >();
+            services.TryAddSingleton(provider =>
+            {
+                return new MapperConfiguration(config =>
+                    {
+                        config.CreateMap<TeamStatsDto, GetTeamStatsResponse>();
+                        config.CreateMap<PutTeamStatsRequest, TeamStatsDto>();
+                    })
+                    .CreateMapper();
+            });
+
+            var sqlRepositorySettingsConfigSection = Configuration.GetSection("FootballStatsApi.Dal.SqlServer");
+
+            var sqlRepositorySettings = new TeamStatsRepositorySettings
+            {
+                ConnectionString = sqlRepositorySettingsConfigSection["connectionString"],
+                QueryTimeout = TimeSpan.Parse(sqlRepositorySettingsConfigSection["queryTimeout"])
+            };
+
+            services.TryAddSingleton(typeof(TeamStatsRepositorySettings), provider => sqlRepositorySettings);
+            services.TryAddScoped<ITeamStatsRepository, TeamStatsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
