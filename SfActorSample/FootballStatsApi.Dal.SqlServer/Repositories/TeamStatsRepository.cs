@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using FootballStatsApi.Dal.Common.Dto;
@@ -16,7 +17,7 @@ namespace FootballStatsApi.Dal.SqlServer.Repositories
             _settings = settings;
         }
 
-        public async Task<IEnumerable<TeamStatsDto>> GetTeamStatsAsync(string id)
+        public async Task<TeamStatsDto> GetTeamStatsAsync(string id)
         {
             var query = @"SELECT [TeamId],
                             [Year],
@@ -38,7 +39,7 @@ namespace FootballStatsApi.Dal.SqlServer.Repositories
                     new {TeamId = id},
                     commandTimeout: (int) _settings.QueryTimeout.TotalSeconds);
 
-                return result;
+                return result.Single();
             }
         }
 
