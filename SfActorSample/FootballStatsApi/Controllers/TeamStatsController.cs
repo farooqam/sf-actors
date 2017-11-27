@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoMapper;
 using FootballStatsApi.Common.Contracts;
 using FootballStatsApi.Dal.Common.Dto;
@@ -9,7 +8,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace FootballStatsApi.Controllers
 {
-    [Route("api/stats/teams")]
+    [Route("api/v1/stats/teams")]
     public class TeamStatsController : Controller
     {
         private readonly ITeamStatsRepository _teamStatsRepository;
@@ -24,16 +23,24 @@ namespace FootballStatsApi.Controllers
         }
 
         [HttpGet("{id}", Name = "GetTeamStats")]
-        [SwaggerResponse(200, typeof(GetTeamStatsResponse[]), "The operation was successful. The response contains an array of team statistics.")]
+        [SwaggerResponse(200, typeof(GetTeamStatsResponse[]),
+            "The operation was successful. The response contains an array of team statistics.")]
         public async Task<IActionResult> GetTeamStats(string id)
         {
             var dtos = await _teamStatsRepository.GetTeamStatsAsync(id);
-            var reponseModels = _mapper.Map<IEnumerable<GetTeamStatsResponse>>(dtos);
-            return Ok(reponseModels);
+            var responseModels = _mapper.Map<GetTeamStatsResponse>(dtos);
+
+            if (responseModels == null)
+            {
+                return Ok();
+            }
+
+            return Ok(responseModels);
         }
 
         [HttpPut]
-        [SwaggerResponse(201, Description = "The operation was successful. The response contains the object. The location header contains the address of the object.")]
+        [SwaggerResponse(201, Description =
+            "The operation was successful. The response contains the object. The location header contains the address of the object.")]
         public async Task<IActionResult> PutTeamStats([FromBody] PutTeamStatsRequest request)
         {
             var dto = _mapper.Map<TeamStatsDto>(request);
