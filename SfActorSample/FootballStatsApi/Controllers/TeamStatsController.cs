@@ -22,20 +22,20 @@ namespace FootballStatsApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("{id}", Name = "GetTeamStats")]
+        [HttpGet("{id}/{year}/{week}", Name = "GetTeamStats")]
         [SwaggerResponse(200, typeof(GetTeamStatsResponse[]),
             "The operation was successful. The response contains an array of team statistics.")]
-        public async Task<IActionResult> GetTeamStats(string id)
+        public async Task<IActionResult> GetTeamStats(string id, short year, byte week)
         {
-            var dtos = await _teamStatsRepository.GetTeamStatsAsync(id);
-            var responseModels = _mapper.Map<GetTeamStatsResponse>(dtos);
+            var dto = await _teamStatsRepository.GetTeamStatsAsync(id, year, week);
+            var responseModel = _mapper.Map<GetTeamStatsResponse>(dto);
 
-            if (responseModels == null)
+            if (responseModel == null)
             {
                 return Ok();
             }
 
-            return Ok(responseModels);
+            return Ok(responseModel);
         }
 
         [HttpPut]
@@ -48,7 +48,7 @@ namespace FootballStatsApi.Controllers
 
             return CreatedAtRoute(
                 "GetTeamStats",
-                new {id = request.TeamId},
+                new {id = request.TeamId, year = request.Year, week = request.Week},
                 request);
         }
     }

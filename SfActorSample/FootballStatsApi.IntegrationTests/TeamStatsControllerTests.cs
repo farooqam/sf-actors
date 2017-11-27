@@ -37,10 +37,10 @@ namespace FootballStatsApi.IntegrationTests
         [Test]
         public async Task Get_When_No_Team_Stats_Returns_Ok_With_No_Body()
         {
-            _mockRepository.Setup(m => m.GetTeamStatsAsync(It.IsAny<string>()))
+            _mockRepository.Setup(m => m.GetTeamStatsAsync(It.IsAny<string>(), It.IsAny<short>(), It.IsAny<byte>()))
                 .ReturnsAsync(null as TeamStatsDto);
 
-            var response = await _httpClient.GetAsync("api/v1/stats/teams/foo");
+            var response = await _httpClient.GetAsync("api/v1/stats/teams/nyg/2017/10");
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
             (await response.Content.ReadAsStringAsync()).Should().BeEmpty();
@@ -53,21 +53,21 @@ namespace FootballStatsApi.IntegrationTests
             var expectedDto = new TeamStatsDto
             {
                 TeamId = "NYG",
+                Year = 2017,
+                Week = 10,
                 TeamName = "New York Giants",
                 GamesPlayed = 10,
                 Losses = 8,
                 Wins = 2,
                 PointsFor = 202,
-                PointsAgainst = 213,
-                Year = 2017
+                PointsAgainst = 213
             };
 
-            _mockRepository.Setup(m => m.GetTeamStatsAsync(expectedDto.TeamId))
+            _mockRepository.Setup(m => m.GetTeamStatsAsync(expectedDto.TeamId, expectedDto.Year, expectedDto.Week))
                 .ReturnsAsync(expectedDto);
 
-            var response = await _httpClient.GetAsync($"api/v1/stats/teams/{expectedDto.TeamId}");
+            var response = await _httpClient.GetAsync($"api/v1/stats/teams/{expectedDto.TeamId}/{expectedDto.Year}/{expectedDto.Week}");
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-
             var actualDto =
                 JsonConvert.DeserializeObject<GetTeamStatsResponse>(await response.Content.ReadAsStringAsync());
 
@@ -79,6 +79,7 @@ namespace FootballStatsApi.IntegrationTests
             actualDto.PointsFor.Should().Be(expectedDto.PointsFor);
             actualDto.PointsAgainst.Should().Be(expectedDto.PointsAgainst);
             actualDto.Year.Should().Be(expectedDto.Year);
+            actualDto.Week.Should().Be(expectedDto.Week);
         }
 
         [Test]
@@ -98,7 +99,7 @@ namespace FootballStatsApi.IntegrationTests
 
             var response = await _httpClient.PutAsync("api/v1/stats/teams", Stringify(requestModel));
             response.StatusCode.Should().Be(HttpStatusCode.Created);
-            response.Headers.Location.Should().Be($"http://localhost/api/v1/stats/teams/{expectedDto.TeamId}");
+            response.Headers.Location.Should().Be($"http://localhost/api/v1/stats/teams/{expectedDto.TeamId}/{expectedDto.Year}/{expectedDto.Week}");
             
         }
 

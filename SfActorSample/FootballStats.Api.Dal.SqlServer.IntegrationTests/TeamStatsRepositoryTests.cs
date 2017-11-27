@@ -56,7 +56,7 @@ namespace FootballStats.Api.Dal.SqlServer.IntegrationTests
                 TransactionScopeAsyncFlowOption.Enabled))
             {
                 await _repository.UpsertTeamStatsAsync(expectedDto);
-                actualDto = await _repository.GetTeamStatsAsync(expectedDto.TeamId);
+                actualDto = await _repository.GetTeamStatsAsync(expectedDto.TeamId, expectedDto.Year, expectedDto.Week);
             }
 
             actualDto.TeamId.Should().Be(expectedDto.TeamId);
@@ -106,7 +106,7 @@ namespace FootballStats.Api.Dal.SqlServer.IntegrationTests
             {
                 await _repository.UpsertTeamStatsAsync(originalDto);
                 await _repository.UpsertTeamStatsAsync(updatedDto);
-                actualDto = await _repository.GetTeamStatsAsync(originalDto.TeamId);
+                actualDto = await _repository.GetTeamStatsAsync(originalDto.TeamId, originalDto.Year, updatedDto.Week);
             }
 
             actualDto.Year.Should().Be(originalDto.Year);

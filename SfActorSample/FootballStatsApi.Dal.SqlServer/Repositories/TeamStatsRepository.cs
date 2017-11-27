@@ -16,7 +16,7 @@ namespace FootballStatsApi.Dal.SqlServer.Repositories
             _settings = settings;
         }
 
-        public async Task<TeamStatsDto> GetTeamStatsAsync(string id)
+        public async Task<TeamStatsDto> GetTeamStatsAsync(string id, short year, byte week)
         {
             var query = @"SELECT [TeamId],
                             [Year],
@@ -28,7 +28,9 @@ namespace FootballStatsApi.Dal.SqlServer.Repositories
                             [Losses],
                             [GamesPlayed]
                         FROM [dbo].[TeamStats] 
-                        WHERE [TeamId] = @TeamId";
+                        WHERE [TeamId] = @TeamId
+                        AND [Year] = @Year
+                        AND [Week] = @Week";
 
             using (var connection = new SqlConnection(_settings.ConnectionString))
             {
@@ -36,7 +38,7 @@ namespace FootballStatsApi.Dal.SqlServer.Repositories
 
                 var result = await connection.QueryAsync<TeamStatsDto>(
                     query,
-                    new {TeamId = id},
+                    new {TeamId = id, Year = year, Week = week},
                     commandTimeout: (int) _settings.QueryTimeout.TotalSeconds);
 
                 return result.Single();
