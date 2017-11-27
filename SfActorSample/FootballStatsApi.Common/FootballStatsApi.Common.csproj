@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\GetTeamStatsRequest.cs" />
     <Compile Include="Contracts\GetTeamStatsResponse.cs" />
     <Compile Include="Contracts\PutTeamStatsRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -25,9 +25,9 @@ namespace FootballStatsApi.Controllers
         [HttpGet("{id}/{year}/{week}", Name = "GetTeamStats")]
         [SwaggerResponse(200, typeof(GetTeamStatsResponse[]),
             "The operation was successful. The response contains an array of team statistics.")]
-        public async Task<IActionResult> GetTeamStats(string id, short year, byte week)
+        public async Task<IActionResult> GetTeamStats(GetTeamStatsRequest request)
         {
-            var dto = await _teamStatsRepository.GetTeamStatsAsync(id, year, week);
+            var dto = await _teamStatsRepository.GetTeamStatsAsync(request.Id, request.Year, request.Week);
             var responseModel = _mapper.Map<GetTeamStatsResponse>(dto);
 
             if (responseModel == null)
