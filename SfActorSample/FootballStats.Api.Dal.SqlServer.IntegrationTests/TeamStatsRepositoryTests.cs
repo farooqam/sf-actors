@@ -126,5 +126,35 @@ namespace FootballStats.Api.Dal.SqlServer.IntegrationTests
             actualDto.PointsFor.Should().Be(updatedDto.PointsFor);
             actualDto.PointsAgainst.Should().Be(updatedDto.PointsAgainst);
         }
+
+        [Test]
+        public async Task UpsertTeamStatsAsync_Duplicate_Year_Week_TeamId_Test()
+        {
+            var dto = new TeamStatsDto
+            {
+                Year = 2017,
+                Week = 10,
+                TeamId = "NYG",
+                TeamName = "New York Giants",
+                GamesPlayed = 10,
+                Wins = 2,
+                Losses = 8,
+                PointsFor = 188,
+                PointsAgainst = 202
+            };
+
+            TeamStatsDto actualDto = null;
+
+            using (new TransactionScope(TransactionScopeOption.RequiresNew,
+                TransactionScopeAsyncFlowOption.Enabled))
+            {
+                await _repository.UpsertTeamStatsAsync(dto);
+                await _repository.UpsertTeamStatsAsync(dto);
+
+                actualDto = await _repository.GetTeamStatsAsync(dto.TeamId, dto.Year, dto.Week);
+            }
+
+            actualDto.Should().NotBeNull();
+        }
     }
 }
