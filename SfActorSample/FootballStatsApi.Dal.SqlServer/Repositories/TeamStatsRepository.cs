@@ -20,6 +20,7 @@ namespace FootballStatsApi.Dal.SqlServer.Repositories
         {
             var query = @"SELECT [TeamId],
                             [Year],
+                            [Week],
                             [TeamName],
                             [PointsFor],
                             [PointsAgainst],
@@ -45,13 +46,14 @@ namespace FootballStatsApi.Dal.SqlServer.Repositories
         public async Task UpsertTeamStatsAsync(TeamStatsDto dto)
         {
             var query = @"MERGE [dbo].[TeamStats] as target
-                            using (SELECT @TeamId, @Year, @TeamName, @PointsFor, @PointsAgainst, @Wins, @Losses, @GamesPlayed) AS source
-                                    ([TeamId], [Year], [TeamName], [PointsFor], [PointsAgainst], [Wins], [Losses], [GamesPlayed])
+                            using (SELECT @TeamId, @Year, @Week, @TeamName, @PointsFor, @PointsAgainst, @Wins, @Losses, @GamesPlayed) AS source
+                                    ([TeamId], [Year], [Week], [TeamName], [PointsFor], [PointsAgainst], [Wins], [Losses], [GamesPlayed])
                             ON (target.[TeamId] = source.[TeamId])
                             WHEN MATCHED THEN
                                 UPDATE SET
                                     [TeamId] = source.[TeamId],
                                     [Year] = source.[Year],
+                                    [Week] = source.[Week],
                                     [TeamName] = source.[TeamName],
                                     [PointsFor] = source.[PointsFor],
                                     [PointsAgainst] = source.[PointsAgainst],
@@ -60,8 +62,8 @@ namespace FootballStatsApi.Dal.SqlServer.Repositories
                                     [GamesPlayed] = source.[GamesPlayed],
                                     [LastUpdated] = getutcdate()
                             WHEN NOT MATCHED THEN
-                                INSERT ([TeamId], [Year], [TeamName], [PointsFor], [PointsAgainst], [Wins], [Losses], [GamesPlayed], [Created])
-                                VALUES (source.[TeamId], source.[Year], source.[TeamName], source.[PointsFor], source.[PointsAgainst], source.[Wins], source.[Losses], source.[GamesPlayed], getutcdate());";
+                                INSERT ([TeamId], [Year], [Week], [TeamName], [PointsFor], [PointsAgainst], [Wins], [Losses], [GamesPlayed], [Created])
+                                VALUES (source.[TeamId], source.[Year], source.[Week], source.[TeamName], source.[PointsFor], source.[PointsAgainst], source.[Wins], source.[Losses], source.[GamesPlayed], getutcdate());";
 
             using (var connection = new SqlConnection(_settings.ConnectionString))
             {
@@ -73,6 +75,7 @@ namespace FootballStatsApi.Dal.SqlServer.Repositories
                     {
                         dto.TeamId,
                         dto.Year,
+                        dto.Week,
                         dto.TeamName,
                         dto.PointsFor,
                         dto.PointsAgainst,

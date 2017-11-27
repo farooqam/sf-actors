@@ -4,6 +4,8 @@
     {
         public short Year { get; set; }
 
+        public byte Week { get; set; }
+
         public string TeamId { get; set; }
 
         public string TeamName { get; set; }

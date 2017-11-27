@@ -64,5 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="FootballStatsApi.Database.publish.xml" />
+    <None Include="FootballStatsApi.Database.Test.publish.xml" />
   </ItemGroup>
 </Project>
