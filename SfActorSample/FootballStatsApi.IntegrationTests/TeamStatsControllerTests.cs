@@ -35,16 +35,13 @@ namespace FootballStatsApi.IntegrationTests
         }
 
         [Test]
-        public async Task Get_When_No_Team_Stats_Returns_Ok_With_No_Body()
+        public async Task Get_When_No_Team_Stats_Returns_NotFound_Status_Code()
         {
             _mockRepository.Setup(m => m.GetTeamStatsAsync(It.IsAny<string>(), It.IsAny<short>(), It.IsAny<byte>()))
                 .ReturnsAsync(null as TeamStatsDto);
 
             var response = await _httpClient.GetAsync("api/v1/stats/teams/nyg/2017/10");
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
-
-            (await response.Content.ReadAsStringAsync()).Should().BeEmpty();
-
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
 
         [Test]

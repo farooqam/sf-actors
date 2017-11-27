@@ -25,6 +25,7 @@ namespace FootballStatsApi.Controllers
         [HttpGet("{id}/{year}/{week}", Name = "GetTeamStats")]
         [SwaggerResponse(200, typeof(GetTeamStatsResponse),
             "The operation was successful. The response contains statistics for the specified team, year, and week.")]
+        [SwaggerResponse(404, Description = "The statistics for the specified team, year, and week was not found.")]
         public async Task<IActionResult> GetTeamStats(GetTeamStatsRequest request)
         {
             var dto = await _teamStatsRepository.GetTeamStatsAsync(request.Id, request.Year, request.Week);
@@ -32,7 +33,7 @@ namespace FootballStatsApi.Controllers
 
             if (responseModel == null)
             {
-                return Ok();
+                return NotFound();
             }
 
             return Ok(responseModel);

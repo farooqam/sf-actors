@@ -41,7 +41,7 @@ namespace FootballStatsApi.Dal.SqlServer.Repositories
                     new {TeamId = id, Year = year, Week = week},
                     commandTimeout: (int) _settings.QueryTimeout.TotalSeconds);
 
-                return result.Single();
+                return result.SingleOrDefault();
             }
         }
 

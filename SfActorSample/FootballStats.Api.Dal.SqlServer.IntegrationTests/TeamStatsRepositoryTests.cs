@@ -35,6 +35,13 @@ namespace FootballStats.Api.Dal.SqlServer.IntegrationTests
         }
 
         [Test]
+        public async Task GetTeamStatsAsync_When_Stats_Not_Found_Returns_Null()
+        {
+            var result = await _repository.GetTeamStatsAsync("foo", 1999, 10);
+            result.Should().BeNull();
+        }
+
+        [Test]
         public async Task GetTeamStatsAsync_GetsTheTeamStats()
         {
             var expectedDto = new TeamStatsDto
