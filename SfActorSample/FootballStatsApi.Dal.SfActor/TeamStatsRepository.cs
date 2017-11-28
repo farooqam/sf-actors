@@ -19,7 +19,7 @@ namespace FootballStatsApi.Dal.SfActor
 
         public async Task<TeamStatsDto> GetTeamStatsAsync(string id, short year, byte week)
         {
-            var actorId = new ActorId($"{id}/{year}/{week}");
+            var actorId = new ActorId($"{id}/{year}/{week}".ToUpperInvariant());
             var actor = ActorProxy.Create<IFootballStatsActor>(actorId, _settings.ActorServiceUri);
             var dto = await actor.Get();
             return dto;
@@ -27,7 +27,7 @@ namespace FootballStatsApi.Dal.SfActor
 
         public async Task UpsertTeamStatsAsync(TeamStatsDto dto)
         {
-            var actorId = new ActorId($"{dto.TeamId}/{dto.Year}/{dto.Week}");
+            var actorId = new ActorId($"{dto.TeamId}/{dto.Year}/{dto.Week}".ToUpperInvariant());
             var actor = ActorProxy.Create<IFootballStatsActor>(actorId, _settings.ActorServiceUri);
             await actor.Update(dto);
         }

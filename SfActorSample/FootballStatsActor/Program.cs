@@ -2,6 +2,7 @@
 using System.Fabric;
 using System.Threading;
 using Autofac;
+using Autofac.Integration.ServiceFabric;
 using FootballStatsApi.Dal.Common.Repositories;
 using FootballStatsApi.Dal.SqlServer.Repositories;
 using Microsoft.ServiceFabric.Actors;
@@ -25,15 +26,15 @@ namespace FootballStatsActor
                     // are automatically populated when you build this project.
                     // For more information, see https://aka.ms/servicefabricactorsplatform
 
-                    ActorRuntime.RegisterActorAsync<FootballStatsActor>(
-                            (context, actorType) => new ActorService(
-                                context, 
-                                actorType, 
-                                (service, actorId) => container.Resolve<FootballStatsActor>(
-                                    new TypedParameter(typeof(ActorService), service),
-                                    new TypedParameter(typeof(ActorId), actorId))))
-                        .GetAwaiter()
-                        .GetResult();
+                    //ActorRuntime.RegisterActorAsync<FootballStatsActor>(
+                    //        (context, actorType) => new ActorService(
+                    //            context, 
+                    //            actorType, 
+                    //            (service, actorId) => container.Resolve<FootballStatsActor>(
+                    //                new TypedParameter(typeof(ActorService), service),
+                    //                new TypedParameter(typeof(ActorId), actorId))))
+                    //    .GetAwaiter()
+                    //    .GetResult();
 
                     Thread.Sleep(Timeout.Infinite);
                 }
@@ -53,8 +54,9 @@ namespace FootballStatsActor
             var sqlServerRepository = new TeamStatsRepository(GetSqlServerSettings(package));
 
             builder.RegisterInstance(sqlServerRepository).As<ITeamStatsRepository>();
-            builder.RegisterType<FootballStatsActor>();
-
+            builder.RegisterServiceFabricSupport();
+            builder.RegisterActor<FootballStatsActor>();
+            
             return builder.Build();
         }
 

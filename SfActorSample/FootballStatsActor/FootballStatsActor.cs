@@ -16,7 +16,7 @@ namespace FootballStatsActor
     ///     - None: State is kept in memory only and not replicated.
     /// </remarks>
     [StatePersistence(StatePersistence.Volatile)]
-    internal class FootballStatsActor : Actor, IFootballStatsActor
+    public class FootballStatsActor : Actor, IFootballStatsActor
     {
         private readonly ITeamStatsRepository _teamStatsRepository;
 
@@ -80,18 +80,14 @@ namespace FootballStatsActor
                 PointsAgainst = dto.PointsAgainst,
                 Week = dto.Week
             });
-
-            await StateManager.SaveStateAsync();
-
+            
             return dto;
         }
 
         public async Task Update(TeamStatsDto dto)
         {
             await _teamStatsRepository.UpsertTeamStatsAsync(dto);
-
-            await StateManager.RemoveStateAsync(GetActorId());
-
+            
             await StateManager.SetStateAsync(GetActorId(), new TeamStatsDto
             {
                 Year = dto.Year,
@@ -104,8 +100,6 @@ namespace FootballStatsActor
                 PointsAgainst = dto.PointsAgainst,
                 Week = dto.Week
             });
-
-            await StateManager.SaveStateAsync();
         }
 
         private string GetActorId()
