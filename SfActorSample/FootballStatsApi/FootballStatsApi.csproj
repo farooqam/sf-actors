@@ -33,7 +33,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FootballStatsApi.Common\FootballStatsApi.Common.csproj" />
     <ProjectReference Include="..\FootballStatsApi.Dal.Common\FootballStatsApi.Dal.Common.csproj" />
-    <ProjectReference Include="..\FootballStatsApi.Dal.SqlServer\FootballStatsApi.Dal.SqlServer.csproj" />
+    <ProjectReference Include="..\FootballStatsApi.Dal.SfActor\FootballStatsApi.Dal.SfActor.csproj" />
   </ItemGroup>
 
   <ItemGroup>

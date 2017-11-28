@@ -2,10 +2,16 @@
 <ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="SfApplicationType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
   <Parameters>
     <Parameter Name="FootballStatsApi_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="FootballStatsActorService_PartitionCount" DefaultValue="10" />
+    <Parameter Name="FootballStatsActorService_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="FootballStatsActorService_TargetReplicaSetSize" DefaultValue="3" />
   </Parameters>
   <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
        should match the Name and Version attributes of the ServiceManifest element defined in the 
        ServiceManifest.xml file. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="FootballStatsActorPkg" ServiceManifestVersion="1.0.0" />
+  </ServiceManifestImport>
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="FootballStatsApiPkg" ServiceManifestVersion="1.0.0" />
     <ConfigOverrides />
@@ -20,6 +26,11 @@
       <StatelessService ServiceTypeName="FootballStatsApiType" InstanceCount="[FootballStatsApi_InstanceCount]">
         <SingletonPartition />
       </StatelessService>
+    </Service>
+    <Service Name="FootballStatsActorService" GeneratedIdRef="1daf1c5b-aa42-4a63-8890-2fa52d5e3de7|Volatile">
+      <StatefulService ServiceTypeName="FootballStatsActorServiceType" TargetReplicaSetSize="[FootballStatsActorService_TargetReplicaSetSize]" MinReplicaSetSize="[FootballStatsActorService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[FootballStatsActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
     </Service>
   </DefaultServices>
 </ApplicationManifest>

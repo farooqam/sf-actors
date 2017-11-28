@@ -29,6 +29,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballStats.Api.Dal.SqlSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballStatsApi.IntegrationTests", "FootballStatsApi.IntegrationTests\FootballStatsApi.IntegrationTests.csproj", "{CE13FD3A-D893-49CD-8DAD-9969386361D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballStatsActor", "FootballStatsActor\FootballStatsActor.csproj", "{4348EC64-481A-4944-9391-4E3DBBA3B1F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballStatsActor.Interfaces", "FootballStatsActor.Interfaces\FootballStatsActor.Interfaces.csproj", "{99F688AD-D2CE-46DD-A6FB-584600CAE375}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballStatsApi.Dal.SfActor", "FootballStatsApi.Dal.SfActor\FootballStatsApi.Dal.SfActor.csproj", "{3FA9A836-AAC9-4958-A6CB-AB975ABA2F49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +113,26 @@ Global
 		{CE13FD3A-D893-49CD-8DAD-9969386361D1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CE13FD3A-D893-49CD-8DAD-9969386361D1}.Release|x64.ActiveCfg = Release|Any CPU
 		{CE13FD3A-D893-49CD-8DAD-9969386361D1}.Release|x64.Build.0 = Release|Any CPU
+		{4348EC64-481A-4944-9391-4E3DBBA3B1F7}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{4348EC64-481A-4944-9391-4E3DBBA3B1F7}.Debug|x64.ActiveCfg = Debug|x64
+		{4348EC64-481A-4944-9391-4E3DBBA3B1F7}.Debug|x64.Build.0 = Debug|x64
+		{4348EC64-481A-4944-9391-4E3DBBA3B1F7}.Release|Any CPU.ActiveCfg = Release|x64
+		{4348EC64-481A-4944-9391-4E3DBBA3B1F7}.Release|x64.ActiveCfg = Release|x64
+		{4348EC64-481A-4944-9391-4E3DBBA3B1F7}.Release|x64.Build.0 = Release|x64
+		{99F688AD-D2CE-46DD-A6FB-584600CAE375}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{99F688AD-D2CE-46DD-A6FB-584600CAE375}.Debug|x64.ActiveCfg = Debug|x64
+		{99F688AD-D2CE-46DD-A6FB-584600CAE375}.Debug|x64.Build.0 = Debug|x64
+		{99F688AD-D2CE-46DD-A6FB-584600CAE375}.Release|Any CPU.ActiveCfg = Release|x64
+		{99F688AD-D2CE-46DD-A6FB-584600CAE375}.Release|x64.ActiveCfg = Release|x64
+		{99F688AD-D2CE-46DD-A6FB-584600CAE375}.Release|x64.Build.0 = Release|x64
+		{3FA9A836-AAC9-4958-A6CB-AB975ABA2F49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FA9A836-AAC9-4958-A6CB-AB975ABA2F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FA9A836-AAC9-4958-A6CB-AB975ABA2F49}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3FA9A836-AAC9-4958-A6CB-AB975ABA2F49}.Debug|x64.Build.0 = Debug|Any CPU
+		{3FA9A836-AAC9-4958-A6CB-AB975ABA2F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FA9A836-AAC9-4958-A6CB-AB975ABA2F49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FA9A836-AAC9-4958-A6CB-AB975ABA2F49}.Release|x64.ActiveCfg = Release|Any CPU
+		{3FA9A836-AAC9-4958-A6CB-AB975ABA2F49}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,6 +146,9 @@ Global
 		{89F13209-07F3-4BC9-B489-0C74D37D76D7} = {F78F413E-46B2-483E-B01C-CDC4E301AEB2}
 		{B46680BF-C9D5-494F-9936-9E33C34248D9} = {C18FF1F6-DF87-4A47-9E0A-694511A0045C}
 		{CE13FD3A-D893-49CD-8DAD-9969386361D1} = {C18FF1F6-DF87-4A47-9E0A-694511A0045C}
+		{4348EC64-481A-4944-9391-4E3DBBA3B1F7} = {F78F413E-46B2-483E-B01C-CDC4E301AEB2}
+		{99F688AD-D2CE-46DD-A6FB-584600CAE375} = {F78F413E-46B2-483E-B01C-CDC4E301AEB2}
+		{3FA9A836-AAC9-4958-A6CB-AB975ABA2F49} = {F78F413E-46B2-483E-B01C-CDC4E301AEB2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {277BB70F-CAF9-47BB-A504-A7BEB41015AE}

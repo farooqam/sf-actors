@@ -3,7 +3,7 @@ using AutoMapper;
 using FootballStatsApi.Common.Contracts;
 using FootballStatsApi.Dal.Common.Dto;
 using FootballStatsApi.Dal.Common.Repositories;
-using FootballStatsApi.Dal.SqlServer.Repositories;
+using FootballStatsApi.Dal.SfActor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -59,15 +59,14 @@ namespace FootballStatsApi
                     .CreateMapper();
             });
 
-            var sqlRepositorySettingsConfigSection = Configuration.GetSection("FootballStatsApi.Dal.SqlServer");
+            var sfActorRepositorySection = Configuration.GetSection("FootballStatsApi.Dal.SfActor");
 
-            var sqlRepositorySettings = new TeamStatsRepositorySettings
+            var actorRepositorySettings = new TeamStatsRepositorySettings
             {
-                ConnectionString = sqlRepositorySettingsConfigSection["connectionString"],
-                QueryTimeout = TimeSpan.Parse(sqlRepositorySettingsConfigSection["queryTimeout"])
+                ActorServiceUri = new Uri(sfActorRepositorySection["actorServiceUri"])
             };
 
-            services.TryAddSingleton(typeof(TeamStatsRepositorySettings), provider => sqlRepositorySettings);
+            services.TryAddSingleton(typeof(TeamStatsRepositorySettings), provider => actorRepositorySettings);
             services.TryAddScoped<ITeamStatsRepository, TeamStatsRepository>();
         }
 
