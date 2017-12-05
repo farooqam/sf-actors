@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.ServiceFabric.Services.Communication.AspNetCore;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
+using System;
+using FootballStatsApi.Dal.SfActor;
 
 namespace FootballStatsApi
 {
@@ -35,8 +37,17 @@ namespace FootballStatsApi
                         return new WebHostBuilder()
                             .UseKestrel()
                             .ConfigureServices(
-                                services => services
-                                    .AddSingleton<StatelessServiceContext>(serviceContext))
+                                services => {
+                                    services.AddSingleton<StatelessServiceContext>(serviceContext);
+
+                                    var configSection = serviceContext.CodePackageActivationContext.GetConfigurationPackageObject("Config").Settings.Sections["FootballStatsApi.Dal.SfActor"];
+                                    var actorServiceUri = configSection.Parameters["actorServiceUri"].Value;
+
+                                    services.AddSingleton(new TeamStatsRepositorySettings
+                                    {
+                                        ActorServiceUri = new Uri(actorServiceUri)
+                                    });
+                                })
                             .UseContentRoot(Directory.GetCurrentDirectory())
                             .UseStartup<Startup>()
                             .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.None)
@@ -44,6 +55,7 @@ namespace FootballStatsApi
                             .Build();
                     }))
             };
+
         }
     }
 }

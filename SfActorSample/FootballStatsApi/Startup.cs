@@ -58,15 +58,7 @@ namespace FootballStatsApi
                     })
                     .CreateMapper();
             });
-
-            var sfActorRepositorySection = Configuration.GetSection("FootballStatsApi.Dal.SfActor");
-
-            var actorRepositorySettings = new TeamStatsRepositorySettings
-            {
-                ActorServiceUri = new Uri(sfActorRepositorySection["actorServiceUri"])
-            };
-
-            services.TryAddSingleton(typeof(TeamStatsRepositorySettings), provider => actorRepositorySettings);
+            
             services.TryAddScoped<ITeamStatsRepository, TeamStatsRepository>();
         }
 
