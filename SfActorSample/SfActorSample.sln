@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6BD5E912-27C1-42A3-ABFC-6D742923C2F0}"
 	ProjectSection(SolutionItems) = preProject
@@ -114,12 +114,14 @@ Global
 		{CE13FD3A-D893-49CD-8DAD-9969386361D1}.Release|x64.ActiveCfg = Release|Any CPU
 		{CE13FD3A-D893-49CD-8DAD-9969386361D1}.Release|x64.Build.0 = Release|Any CPU
 		{4348EC64-481A-4944-9391-4E3DBBA3B1F7}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{4348EC64-481A-4944-9391-4E3DBBA3B1F7}.Debug|Any CPU.Build.0 = Debug|x64
 		{4348EC64-481A-4944-9391-4E3DBBA3B1F7}.Debug|x64.ActiveCfg = Debug|x64
 		{4348EC64-481A-4944-9391-4E3DBBA3B1F7}.Debug|x64.Build.0 = Debug|x64
 		{4348EC64-481A-4944-9391-4E3DBBA3B1F7}.Release|Any CPU.ActiveCfg = Release|x64
 		{4348EC64-481A-4944-9391-4E3DBBA3B1F7}.Release|x64.ActiveCfg = Release|x64
 		{4348EC64-481A-4944-9391-4E3DBBA3B1F7}.Release|x64.Build.0 = Release|x64
 		{99F688AD-D2CE-46DD-A6FB-584600CAE375}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{99F688AD-D2CE-46DD-A6FB-584600CAE375}.Debug|Any CPU.Build.0 = Debug|x64
 		{99F688AD-D2CE-46DD-A6FB-584600CAE375}.Debug|x64.ActiveCfg = Debug|x64
 		{99F688AD-D2CE-46DD-A6FB-584600CAE375}.Debug|x64.Build.0 = Debug|x64
 		{99F688AD-D2CE-46DD-A6FB-584600CAE375}.Release|Any CPU.ActiveCfg = Release|x64
